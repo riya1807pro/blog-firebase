@@ -1,10 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.auth);
+  console.log(selector);
   const navigate = useNavigate();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");

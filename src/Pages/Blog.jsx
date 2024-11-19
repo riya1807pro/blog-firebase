@@ -1,43 +1,45 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { handleUpload } from "../utils/imageStore";
 
 const Blog = ({ posts, setPosts }) => {
-  const ref = useRef();
   const location = useLocation();
-  const { post } = location.state || {};
   const navigate = useNavigate();
+  const { post } = location.state || {};
   const [title, setTitle] = useState(post ? post.title : "");
   const [content, setContent] = useState(post ? post.content : "");
   const [file, setFile] = useState(post ? post.file : "");
   const [filePreview, setFilePreview] = useState("");
 
-  useEffect(() => {}, []);
+  const ref = useRef();
 
-  function storeImageInLocalStorage(file) {
-    const reader = new FileReader();
+  // useEffect(() => {}, []);
 
-    reader.onloadend = function () {
-      // The result is a Data URL
-      localStorage.setItem("imageKey", reader.result);
-      console.log("Image stored in local storage");
-    };
+  // function storeImageInLocalStorage(file) {
+  //   const reader = new FileReader();
 
-    // Read the file as a Data URL
-    reader.readAsDataURL(file);
-  }
+  //   reader.onloadend = function () {
+  //     // The result is a Data URL
+  //     localStorage.setItem("imageKey", reader.result);
+  //     console.log("Image stored in local storage");
+  //   };
+
+  //   // Read the file as a Data URL
+  //   reader.readAsDataURL(file);
+  // }
   // const handleTitleChange =};
 
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
-  };
-
-  // const handleFileChange = (event) => {
-  //   const selectedFile = event.target.files[0];
-  //   setFile(selectedFile);
-  //   if (selectedFile) {
-  //     setFilePreview(URL.createObjectURL(selectedFile));
-  //   }
+  // const handleContentChange = (event) => {
+  //   setContent(event.target.value);
   // };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    if (selectedFile) {
+      setFilePreview(URL.createObjectURL(selectedFile));
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,11 +48,12 @@ const Blog = ({ posts, setPosts }) => {
       alert("Title and content are required!");
       return;
     }
-    setPosts([...posts, { title, content, file }]);
+    const img = handleUpload(file);
+    setPosts([...posts, { title, content, file: img }]);
     // console.log([[...posts, { title, content, file }]]);
     localStorage.setItem(
       "posts",
-      JSON.stringify([...posts, { title, content, file }])
+      JSON.stringify([...posts, { title, content, file: img }])
     );
     setTitle("");
     setContent("");
@@ -96,7 +99,7 @@ const Blog = ({ posts, setPosts }) => {
             cols={30}
           />
         </div>
-        {/* <div>
+        <div>
           <input
             className="border border-teal-500 rounded-lg px-5 py-3 bg-teal-200 active:bg-teal-400 active:scale-105"
             placeholder="Add a file"
@@ -104,10 +107,10 @@ const Blog = ({ posts, setPosts }) => {
             id="file"
             onChange={handleFileChange}
           />
-          {filePreview && (
+          {/* {filePreview && (
             <img src={filePreview} className="w-20 h-20 object-cover" />
-          )}
-        </div> */}
+          )} */}
+        </div>
         <button
           className="border w-20 border-green-500 rounded-lg px-2 py-1 bg-green-200 overflow-auto hover:bg-green-300 hover:scale-105"
           type="submit"

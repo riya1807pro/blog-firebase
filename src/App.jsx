@@ -10,18 +10,27 @@ import Login from "./Pages/Login";
 import Footer from "./Pages/Footer";
 import Contact from "./Pages/Contact";
 import Signup from "./Pages/Signup";
-
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "./Authentication/Store/AuthSlice";
 const App = () => {
   const [posts, setPosts] = useState([]);
-
+  const dispatch = useDispatch();
+  const { user, status } = useSelector((state) => state.auth);
+  console.log({ user });
+  // const data = {
+  //   username: "dev",
+  //   email: "dev123@gmail.com",
+  // };
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts"));
-    console.log({ storedPosts });
+    // console.log({ storedPosts });
 
     if (storedPosts) {
       // setPosts(JSON.parse(storedPosts));
       setPosts(storedPosts);
     }
+    // dispatch(login({ user: data }));
+    // dispatch(logout());
   }, []);
 
   return (

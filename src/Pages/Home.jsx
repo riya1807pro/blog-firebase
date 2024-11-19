@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDatabase } from "firebase/database";
 // import "./blog.css";
 
 const Home = ({ posts, setPosts }) => {
+  const db = getDatabase();
   console.log({ home: posts });
 
   const confirm_delete = (index) => {
@@ -27,10 +29,10 @@ const Home = ({ posts, setPosts }) => {
     });
   };
 
-  const handleImage = (file) => {
-    console.log({ image: file });
-    return URL.createObjectURL(file);
-  };
+  // const handleImage = (file) => {
+  //   console.log({ image: file });
+  //   return URL.createObjectURL(file);
+  // };
   const navigate = useNavigate();
   return (
     <div className="mt-20 h-full w-11/12 bg-slate-200 ">
