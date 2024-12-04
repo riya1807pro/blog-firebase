@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Send the form data to your backend server
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, message }),
       });
       if (response.ok) {
         // Handle successful submission
-        console.log('Message sent successfully!');
+        console.log("Message sent successfully!");
         // Reset form fields
-        setName('');
-        setEmail('');
-        setMessage('');
+        setName("");
+        setEmail("");
+        setMessage("");
       } else {
         // Handle errors
-        console.error('Error sending message:', response.status);
+        console.error(
+          "message cant send ,Error sending message:",
+          response.status
+        );
       }
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error("Error sending message:", error);
     }
   };
 

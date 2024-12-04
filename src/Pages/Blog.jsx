@@ -100,16 +100,9 @@ const Blog = ({ posts, setPosts }) => {
           />
         </div>
         <div>
-          <input
-            className="border border-teal-500 rounded-lg px-5 py-3 bg-teal-200 active:bg-teal-400 active:scale-105"
-            placeholder="Add a file"
-            type="file"
-            id="file"
-            onChange={handleFileChange}
-          />
-          {/* {filePreview && (
+          {filePreview && (
             <img src={filePreview} className="w-20 h-20 object-cover" />
-          )} */}
+          )}
         </div>
         <button
           className="border w-20 border-green-500 rounded-lg px-2 py-1 bg-green-200 overflow-auto hover:bg-green-300 hover:scale-105"
@@ -118,6 +111,14 @@ const Blog = ({ posts, setPosts }) => {
           Add
         </button>
       </form>
+      <div>
+        {/* <button
+          className="py-2 px-4 border-black border rounded-lg ml-10 hover:scale-105 hover:bg-gradient-to-r transition-all duration-200 hover:bg-red-500 hover:to-green-500"
+          onClick={ImageUpload}
+        >
+          CreateImageBlog
+        </button> */}
+      </div>
     </div>
   );
 };

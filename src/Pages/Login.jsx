@@ -33,7 +33,10 @@ const Login = () => {
 
   return (
     <>
-      <button className="p-6 m-10 bg-red-400" onClick={signInWithGoogle}>
+      <button
+        className="p-4 m-10 bg-blue-300 border-2 rounded-lg"
+        onClick={signInWithGoogle}
+      >
         SignUpWithGoogle
       </button>
       ;
