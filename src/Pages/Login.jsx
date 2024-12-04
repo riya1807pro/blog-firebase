@@ -22,11 +22,11 @@ const Login = () => {
         email: res.user.email,
         profileImg: res.user.photoURL,
       };
+      alert = "login successfully!!!!";
       console.log({ data });
       dispatch(login({ user: data }));
-
-      alert("Signed in successfully with Google");
     } catch (error) {
+      alert = "uncessful login";
       console.error("Error signing in with Google............", error);
     }
   };

@@ -47,13 +47,15 @@ const Home = ({ posts, setPosts }) => {
       <h2 className="text-2xl  text-center font-mono font-medium">
         Blog Posts
       </h2>
-      <button
-        className="py-2 px-4 border-black rounded-lg ml-72 mt-8 bg-yellow-900 text-white border-2  hover:scale-105  hover:bg-gradient-to-r transition-all duration-200 hover:bg-yellow-700 hover:to-green-500"
-        onClick={() => navigate("/blog")}
-      >
-        Create New Post
-      </button>
-
+      <div>
+        {" "}
+        <button
+          className="py-2 px-4 border-black rounded-lg ml-72 mt-8 bg-yellow-900 text-white border-2  hover:scale-105  hover:bg-gradient-to-r transition-all duration-200 hover:bg-yellow-700 hover:to-green-500"
+          onClick={() => navigate("/blog")}
+        >
+          Create New Post
+        </button>
+      </div>
       <div className="mb-20"></div>
       <ul className="mb-20 space-y-300 " style={{ marginBottom: "100px" }}>
         {posts &&
